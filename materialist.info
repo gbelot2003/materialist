@@ -1,0 +1,31 @@
+name = Materialist Drupal Theme
+description = Yet another materialize theme.
+core = 7.x
+
+;;;;;;;;;;;;;;;;;;;;;
+;; Regions
+;;;;;;;;;;;;;;;;;;;;;
+
+regions[sidebar_first] = Sidebar top
+regions[sidebar_second] = Sidebar bottom
+regions[content] = Content
+regions[content_bottom] = Content bottom
+regions[header] = Header
+regions[footer] = Footer
+regions[help] = Help
+
+;;;;;;;;;;;;;;;;;;;;;
+;; Stylesheets
+;;;;;;;;;;;;;;;;;;;;;
+
+stylesheets[all][] = css/materialist.css
+
+; ;;;;;;;;;;;;;;;;;;;;;
+; ;; Scripts
+; ;;;;;;;;;;;;;;;;;;;;;
+
+
+scripts[] = js/prism.js
+scripts[] = materialize/bin/materialize.js
+scripts[] = js/jquery.timeago.min.js
+scripts[] = js/init.js
