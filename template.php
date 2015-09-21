@@ -9,6 +9,7 @@
 
 
 /**
+ * hook_css_alter implementation
  * remove default css from drupal core.
  */
 
@@ -43,28 +44,42 @@ function materialist_css_alter(&$css) {
 	$css = array_diff_key($css, $exclude);
 }
 
-
+/**
+ * hook_form_alter implementation
+ * @param $form
+ * @param $form_state
+ * @param $form_id
+ */
 function materialist_form_alter(&$form, &$form_state, $form_id){
-	//$form['search_block_form']['#attributes']['onblur'] = "if (this.value == '') {this.value = 'Buscar';}";
+
 	if ($form_id == 'search_block_form')
 	{
 		$form['search_block_form']['#attributes']['placeholder'] = t('Search');
-		$form['search_block_form']['#attributes']['title'] = t('Ingresa el texto que deseas buscar');
+		$form['search_block_form']['#attributes']['title'] = t('Add search string');
 		$form['actions']['submit']['#attributes']['class'][] = 'btn btn-primary blue';
 	}
+		$form['actions']['submit']['#attributes']['class'][] = 'btn btn-primary blue';
+		$form['actions']['preview']['#attributes']['class'][] = 'btn btn-flat';
 }
 
 /**
- * Implements theme_menu_tree().
+ * hook_menu_tree implementation
+ * Change the ul class variable for menus
+ * @param $variables
+ * @return string
  */
 function materialist_menu_tree(&$variables) {
 	return '<ul class="collection">' . $variables['tree'] . '</ul>';
 }
 
+/**
+ * hook_menu_link
+ * all menus exept primary menu have li tag modified
+ * @param array $variables
+ * @return mixed
+ */
+function materialist_menu_link(array $variables) {
 
-function materialist_menu_link__navigation(array $variables) {
-
-	//add class for li
 	$variables['element']['#attributes']['class'][] = 'collection-item';
 	return theme_menu_link($variables);
 
