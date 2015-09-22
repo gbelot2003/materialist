@@ -22,3 +22,28 @@ ul.tabs {
     }
   }
 }
+
+.breadcrumb {
+  background: rgba(245, 245, 245, 1);
+  border: 0px solid rgba(245, 245, 245, 1);
+  border-radius: 4px; display: block;
+  li {
+    font-size: 14px;
+    list-style-type:none;
+    display: inline-block;
+  }
+  a {
+    color: rgba(66, 139, 202, 1);
+  }
+  a:hover {
+    color: rgba(42, 100, 150, 1);
+  }
+
+}
+.breadcrumb>.active {
+  color: rgba(153, 153, 153, 1);
+}
+.breadcrumb>li+li:before {
+  color: rgba(204, 204, 204, 1);
+  content: "\002F\00a0";
+}
