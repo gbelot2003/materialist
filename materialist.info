@@ -6,13 +6,19 @@ core = 7.x
 ;; Regions
 ;;;;;;;;;;;;;;;;;;;;;
 
-regions[sidebar_first] = Sidebar top
-regions[sidebar_second] = Sidebar bottom
+regions[header] = Header
+regions[help] = Help
+regions[sidebar_first] = Sidebar right
+regions[banner] = Banner Top
+regions[top_a] = Block Top 1
+regions[top_b] = Block Top 2
+regions[top_c] = Block Top 3
 regions[content] = Content
 regions[content_bottom] = Content bottom
-regions[header] = Header
 regions[footer] = Footer
-regions[help] = Help
+regions[sub_footer_a] = Sub Footer one
+regions[sub_footer_b] = Sub Footer two
+regions[sub_footer_c] = Sub Footer three
 
 ;;;;;;;;;;;;;;;;;;;;;
 ;; Stylesheets
@@ -23,7 +29,6 @@ stylesheets[all][] = css/materialist.css
 ; ;;;;;;;;;;;;;;;;;;;;;
 ; ;; Scripts
 ; ;;;;;;;;;;;;;;;;;;;;;
-
 
 scripts[] = js/prism.js
 scripts[] = materialize/bin/materialize.js
