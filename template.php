@@ -1,12 +1,11 @@
 <?php
 /**
  *
- * 09/20/2015
+ * 09/20/2015 $Gerardo A. Belot
  * Materialist Drupal theme
  * Based on Materialize css framework
  *
  */
-
 
 /**
  * hook_css_alter implementation
@@ -60,6 +59,36 @@ function materialist_form_alter(&$form, &$form_state, $form_id){
 	}
 		$form['actions']['submit']['#attributes']['class'][] = 'btn btn-primary blue';
 		$form['actions']['preview']['#attributes']['class'][] = 'btn btn-flat';
+}
+
+/**
+ * hook_breadcrumb implementation
+ * this conf. is perfect for "breadcrumb module" installation
+ * @param $variables
+ * @return string
+ */
+function materialist_breadcrumb($variables) {
+	if (count($variables['breadcrumb']) > 0) {
+		$lastitem = sizeof($variables['breadcrumb']);
+		$title = drupal_get_title();
+		$crumbs = '<ol class="breadcrumb">';
+		$a=1;
+		foreach($variables['breadcrumb'] as $value) {
+			if ($a!=$lastitem){
+				$crumbs .= '<li>'. $value . ' ' . '</li>';
+				$a++;
+			}
+			else {
+				$crumbs .= '<li>'.$value.'</li>';
+			}
+
+		}
+		$crumbs .= '</ol>';
+		return $crumbs;
+	}
+	else {
+		return t("Home");
+	}
 }
 
 /**
