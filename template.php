@@ -5,6 +5,8 @@
  * Materialist Drupal theme
  * Based on Materialize css framework
  *
+ * @file
+ * template.php
  */
 
 /**
@@ -41,6 +43,54 @@ function materialist_css_alter(&$css) {
 		'modules/user/user.css' => FALSE,
 	];
 	$css = array_diff_key($css, $exclude);
+}
+
+/**
+ * hook_preprocess_page
+ * @param $var
+ */
+function materialist_process_page(&$variables){
+
+	if (!empty($variables['page']['sidebar_first'])) {
+		$variables['content_column_class'] = ' class="col s12 m8"';
+	} else {
+		$variables['content_column_class'] = ' class="col s12"';
+	}
+
+	if(!empty($variables['page']['top_a']) && !empty($variables['page']['top_b']) && !empty($variables['page']['top_c'])){
+		$variables['top_column_class'] = ' class="col s12 m4"';
+	} elseif(
+		!empty($variables['page']['top_a']) && !empty($variables['page']['top_b']) && empty($variables['page']['top_c']) ||
+		!empty($variables['page']['top_a']) && empty($variables['page']['top_b']) && !empty($variables['page']['top_c']) ||
+		empty($variables['page']['top_a']) && !empty($variables['page']['top_b']) && !empty($variables['page']['top_c'])
+	){
+		$variables['top_column_class'] = ' class="col s12 m6"';
+	} elseif(
+		!empty($variables['page']['top_a']) && empty($variables['page']['top_b']) && empty($variables['page']['top_c']) ||
+		empty($variables['page']['top_a']) && !empty($variables['page']['top_b']) && empty($variables['page']['top_c']) ||
+		empty($variables['page']['top_a']) && empty($variables['page']['top_b']) && !empty($variables['page']['top_c'])
+	){
+		$variables['top_column_class'] = ' class="col s12"';
+	}
+
+	if(!empty($variables['page']['sub_footer_a']) && !empty($variables['page']['sub_footer_b']) && !empty($variables['page']['sub_footer_c'])){
+		$variables['sub_footer_column_class_first'] = ' class="col s12 m6"';
+		$variables['sub_footer_column_class_others'] = ' class="col s12 m3"';
+	} elseif(
+		!empty($variables['page']['sub_footer_a']) && !empty($variables['page']['sub_footer_b']) && empty($variables['page']['sub_footer_c']) ||
+		!empty($variables['page']['sub_footer_a']) && empty($variables['page']['sub_footer_b']) && !empty($variables['page']['sub_footer_c']) ||
+		!empty($variables['page']['sub_footer_a']) && !empty($variables['page']['sub_footer_b']) && empty($variables['page']['sub_footer_c'])
+	){
+		$variables['sub_footer_column_class_first'] = ' class="col s12 m6"';
+		$variables['sub_footer_column_class_others'] = ' class="col s12 m6"';
+	} elseif(
+		!empty($variables['page']['sub_footer_a']) && empty($variables['page']['sub_footer_b']) && empty($variables['page']['sub_footer_c']) ||
+		empty($variables['page']['sub_footer_a']) && !empty($variables['page']['sub_footer_b']) && empty($variables['page']['sub_footer_c']) ||
+		empty($variables['page']['sub_footer_a']) && empty($variables['page']['sub_footer_b']) && !empty($variables['page']['sub_footer_c'])
+	){
+		$variables['sub_footer_column_class_first'] = ' class="col s12"';
+		$variables['sub_footer_column_class_others'] = ' class="col s12"';
+	}
 }
 
 /**
@@ -114,3 +164,20 @@ function materialist_menu_link(array $variables) {
 
 	return $output;
 }
+
+/**
+ * hook_render_block
+ *
+ * @param $module
+ * @param $delta
+ * @return mixed
+ */
+/*
+	function materialist_render_block($module, $delta) {
+	$block = module_invoke($module, 'block_view', $delta);
+	$block['module'] = $module;
+	$block['delta'] = $delta;
+	$vars = ['elements' => ['#block' => (object) $block, '#children' => render($block['content'])]];
+	return theme('block', $vars);
+}
+ */

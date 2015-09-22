@@ -12587,3 +12587,36 @@ ul.tabs li {
 ul.tabs li a {
   color: white;
 }
+
+/* line 26, ../scss/_style.scss */
+.breadcrumb {
+  background: whitesmoke;
+  border: 0px solid whitesmoke;
+  border-radius: 4px;
+  display: block;
+}
+/* line 30, ../scss/_style.scss */
+.breadcrumb li {
+  font-size: 14px;
+  list-style-type: none;
+  display: inline-block;
+}
+/* line 35, ../scss/_style.scss */
+.breadcrumb a {
+  color: #428bca;
+}
+/* line 38, ../scss/_style.scss */
+.breadcrumb a:hover {
+  color: #2a6496;
+}
+
+/* line 43, ../scss/_style.scss */
+.breadcrumb > .active {
+  color: #999999;
+}
+
+/* line 46, ../scss/_style.scss */
+.breadcrumb > li + li:before {
+  color: #cccccc;
+  content: "\002F\00a0";
+}
