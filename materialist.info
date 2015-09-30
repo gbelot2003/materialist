@@ -31,6 +31,6 @@ stylesheets[all][] = css/materialist.css
 ; ;;;;;;;;;;;;;;;;;;;;;
 
 scripts[] = js/prism.js
-scripts[] = materialize/bin/materialize.js
+scripts[] = js/materialize.js
 scripts[] = js/jquery.timeago.min.js
 scripts[] = js/init.js
