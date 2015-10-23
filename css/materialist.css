@@ -1,3 +1,24 @@
+/***************************/
+@media all and (max-width: 479px) {
+  /* line 2, ../scss/grid/grid.scss */
+  .rows {
+    width: 100%;
+    float: left;
+    margin-right: 2%;
+  }
+}
+@media all and (min-width: 480px) {
+  /* line 9, ../scss/grid/grid.scss */
+  .rows {
+    width: 48%;
+    float: left;
+    margin-right: 2%;
+  }
+  /* line 13, ../scss/grid/grid.scss */
+  .rows:nth-child(2n - 1) {
+    margin-right: 2%;
+  }
+}
 /* line 378, ../scss/sass/components/_color.scss */
 .materialize-red.lighten-5 {
   background-color: #fdeaeb !important;

@@ -166,18 +166,62 @@ function materialist_menu_link(array $variables) {
 }
 
 /**
- * hook_render_block
- *
- * @param $module
- * @param $delta
- * @return mixed
+ * hook_preprocess_node
+ * @param $variables
+ * @param $hook
  */
-/*
-	function materialist_render_block($module, $delta) {
-	$block = module_invoke($module, 'block_view', $delta);
-	$block['module'] = $module;
-	$block['delta'] = $delta;
-	$vars = ['elements' => ['#block' => (object) $block, '#children' => render($block['content'])]];
-	return theme('block', $vars);
+function materialist_preprocess_node(&$variables, $hook) {
+	if($variables['elements']['#view_mode'] == 'teaser'){
+		$variables['theme_hook_suggestions'][]= 'node__teaser';
+	}
 }
+
+/**
+ * Implements Theme fields
+ * reference from https://api.drupal.org/comment/43858#comment-43858
+ * Overwrite the theme function to clear the output variable, with less divs and we can
+ * chose the output format
+ *
+ * @param $variables
+ * @param string $tag
+ * @param string $itemsep
+ * @return string
  */
+function materialist_field($variables, $tag='div', $itemsep='') {
+
+	$isempty    = true;
+	$output     = '';
+	$sep        = '';
+
+	// Render the items.
+	$output = '<'.$tag.' class="field-items"' . $variables['content_attributes'] . '>';
+	foreach ($variables['items'] as $delta => $item) {
+		$classes    = 'field-item chip ' . ($delta % 2 ? 'odd' : 'even');
+		$rendered   = drupal_render($item);
+		$isempty    = $isempty && (strlen(trim($rendered))==0);
+		$output     .= '<'.$tag.' class="' . $classes . '"' . $variables['item_attributes'][$delta] . '>';
+		$output     .= $sep.$rendered;
+		$output     .= '</'.$tag.'>';
+		$sep        = $itemsep;
+	}
+	$output .= '</'.$tag.'>';
+
+	if ($isempty) return '<!-- '.$variables['label'].': empty -->';
+
+	// Prepend the label, if it's not hidden.
+	if (!$variables['label_hidden']) {
+		$label  = '<'.$tag.' class="field-label"' . $variables['title_attributes'] . '>' . $variables['label'] . ':&nbsp;</'.$tag.'>';
+		$output = $label.$output;
+	}
+
+	// Render the top-level DIV.
+	$output = '<div class="' . $variables['classes'] . '"' . $variables['attributes'] . '>' . $output . '</div>';
+
+	return $output;
+
+}
+
+function materialist_field__field_tags__article($variables)
+{
+	return materialist_field($variables,'span');
+}

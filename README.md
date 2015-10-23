@@ -20,7 +20,7 @@ The Css defaults are rewrited, so it's posible to fine some minor conflicts but 
 - **Block, navbar content and basic stuff. (checked)**
 - **Need's to theme the comment buttons output, in order to make materialize classes defaut. (checked)**
 - Add panels and DS compatible layouts.
-- There is a hash problem with javascript, it needs review (Not knows behavior on functions, but my affect response times).
+- **There is a hash problem with javascript, it needs review (Not knows behavior on functions, but my affect response times)(checked)**.
 - Date, tease, user profiles and other basic elements on node.tpl need work and style.
 - Create a way to changes color from administration themes form (maybe colors module).
 - Need to figured how to print the nav dropdows. 

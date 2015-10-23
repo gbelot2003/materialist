@@ -114,7 +114,9 @@
 					<?php endif; ?>
 
 					<div class="col s12">
-						<?php print render($page['content']); ?>
+						<div id="panel-front">
+							<?php print render($page['content']); ?>
+						</div>
 						<?php print $feed_icons; ?>
 					</div>
 				</div>

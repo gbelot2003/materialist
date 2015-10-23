@@ -33,4 +33,5 @@ stylesheets[all][] = css/materialist.css
 scripts[] = js/prism.js
 scripts[] = js/materialize.js
 scripts[] = js/jquery.timeago.min.js
+scripts[] = js/masonry.pkgd.js
 scripts[] = js/init.js
